@@ -29,33 +29,48 @@
                 transform: translateY(0);
             }
         }
-    </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("show");
-                    }
-                });
-            });
 
-            document.querySelectorAll(".scroll-fade").forEach((el) => observer.observe(el));
-        });
-    </script>
+        html {
+            scroll-behavior: smooth; /* на всякий случай, если браузер поддерживает */
+        }
+    </style>
+
+
 </head>
 <body class="text-gray-900 bg-gradient-to-b from-white  to-red-50">
 <!-- Header -->
-<header id="header" class="fixed top-0 left-0 w-full bg-transparent backdrop-blur-md z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap justify-between items-center">
+<header id="header" class="fixed top-0 left-0 w-full bg-transparent backdrop-blur-md z-50 px-4">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+        <!-- Логотип -->
         <h1 class="text-lg sm:text-xl font-bold text-red-600">CardiaXSystems</h1>
-        <nav class="flex flex-wrap space-x-4 text-sm sm:text-base text-gray-700 font-medium">
+
+        <!-- Навигация для десктопа -->
+        <nav class="hidden md:flex space-x-6 text-sm sm:text-base text-gray-700 font-medium">
             <a href="#about" class="hover:text-red-600 transition">О проекте</a>
+            <a href="#models" class="hover:text-red-600 transition">Модели</a>
             <a href="#team" class="hover:text-red-600 transition">Команда</a>
-            <a href="#contact" class="hover:text-red-600 transition">Контакты</a>
+        </nav>
+
+        <!-- Бургер для мобилок -->
+        <div class="md:hidden">
+            <button id="menu-button" class="relative  w-8 h-8 flex flex-col justify-center items-center gap-1 focus:outline-none">
+                <span class="block w-6 h-0.5 bg-gray-700 rounded transition-all duration-300 ease-in-out" id="line1"></span>
+                <span class="block w-6 h-0.5 bg-gray-700 rounded transition-all duration-300 ease-in-out" id="line2"></span>
+                <span class="block w-6 h-0.5 bg-gray-700 rounded transition-all duration-300 ease-in-out" id="line3"></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Мобильное меню -->
+    <div id="mobile-menu" class="hidden opacity-0 translate-y-[-10px] transition-all duration-300 ease-in-out">
+        <nav class="flex flex-col space-y-4 text-gray-700 font-medium mt-4">
+            <a href="#about" class="hover:text-red-600 transition mobile-link">О проекте</a>
+            <a href="#team" class="hover:text-red-600 transition mobile-link">Команда</a>
+            <a href="#contact" class="hover:text-red-600 transition mobile-link">Контакты</a>
         </nav>
     </div>
 </header>
+
 
 <!-- Hero Section -->
 <section class="min-h-screen flex items-center justify-center px-4 pt-32 pb-16 sm:pt-36 fade-in">
@@ -76,6 +91,74 @@
     </div>
 </section>
 
+<!-- Benefits Section -->
+<section id="benefits" class="py-16 px-4 sm:px-8 lg:px-20 scroll-fade">
+    <div class="max-w-7xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold text-red-600 text-center mb-12">Наши преимущества</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+            <!-- Block 1 -->
+            <div class="rounded-xl p-6 text-center transition">
+                <div class="text-6xl sm:text-7xl text-red-500 mb-6">💰</div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">Дешевле конкурентов</h3>
+                <p class="text-sm sm:text-base text-gray-600">Мы предлагаем передовые решения по более доступной цене, сохраняя высокое качество и эффективность.</p>
+            </div>
+            <!-- Block 2 -->
+            <div class="rounded-xl p-6 text-center transition">
+                <div class="text-6xl sm:text-7xl text-red-500 mb-6">🚀</div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">Современный подход</h3>
+                <p class="text-sm sm:text-base text-gray-600">Используем новейшие технологии и научные разработки для улучшения диагностики и лечения.</p>
+            </div>
+            <!-- Block 3 -->
+            <div class="rounded-xl p-6 text-center transition">
+                <div class="text-6xl sm:text-7xl text-red-500 mb-6">🔒</div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">Надёжность</h3>
+                <p class="text-sm sm:text-base text-gray-600">Мы гарантируем стабильную работу решений и высокую точность медицинских данных.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Models Section -->
+<section id="models" class="py-16 px-4 sm:px-8 lg:px-20 scroll-fade">
+    <div class="max-w-7xl mx-auto">
+        <!-- Главный заголовок -->
+        <h2 class="text-3xl sm:text-4xl font-bold text-red-600 text-center mb-16">Модели</h2>
+
+        <!-- Первая модель -->
+        <div class="flex flex-col lg:flex-row items-center gap-12 mb-16">
+            <!-- Фото -->
+            <div class="flex-1">
+                <img src="/images/model-example-1.jpg" alt="CardioDefender AP-01" class="rounded-2xl w-full object-cover shadow-lg" />
+            </div>
+            <!-- Текст -->
+            <div class="flex-1">
+                <h3 class="text-2xl sm:text-3xl font-semibold text-gray-800 mb-4">Модель CardioDefender AP-01</h3>
+                <p class="text-gray-700 text-base sm:text-lg leading-relaxed">
+                    CardioDefender AP-01 — портативная система для непрерывного мониторинга сердечной активности. Обеспечивает высокую точность данных, удобен в использовании и интегрируется с современными IT-платформами.
+                </p>
+            </div>
+        </div>
+
+        <!-- Вторая модель для дизайна просто, на будущее -->
+<!--        <div class="flex flex-col lg:flex-row-reverse items-center gap-12 mb-16">-->
+<!--            &lt;!&ndash; Фото &ndash;&gt;-->
+<!--            <div class="flex-1">-->
+<!--                <img src="/images/model-example-2.jpg" alt="CardioInsight XP-02" class="rounded-2xl w-full object-cover shadow-lg" />-->
+<!--            </div>-->
+<!--            &lt;!&ndash; Текст &ndash;&gt;-->
+<!--            <div class="flex-1">-->
+<!--                <h3 class="text-2xl sm:text-3xl font-semibold text-gray-800 mb-4">Модель CardioInsight XP-02</h3>-->
+<!--                <p class="text-gray-700 text-base sm:text-lg leading-relaxed">-->
+<!--                    CardioInsight XP-02 — новейшая модель для глубокой диагностики аритмий. Оснащена системой умной аналитики и поддерживает облачное хранение данных для упрощения работы врачей.-->
+<!--                </p>-->
+<!--            </div>-->
+<!--        </div>-->
+
+        <!-- Можно добавить ещё модели по такому же принципу -->
+    </div>
+</section>
+
+
 <!-- Team Section -->
 <section id="team" class="py-16 px-4 sm:px-8 lg:px-20  scroll-fade">
     <div class="max-w-7xl mx-auto">
@@ -83,21 +166,51 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
             <div class="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition">
                 <img class="w-24 h-24 mx-auto rounded-full mb-4" src="https://via.placeholder.com/150" alt="Team Member">
-                <h3 class="text-xl font-semibold text-gray-800">Имя Фамилия</h3>
-                <p class="text-sm text-gray-600">Должность</p>
+                <h3 class="text-xl font-semibold text-gray-800">Амелин Илья</h3>
+                <p class="text-sm text-gray-600">Инженер</p>
             </div>
             <div class="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition">
                 <img class="w-24 h-24 mx-auto rounded-full mb-4" src="https://via.placeholder.com/150" alt="Team Member">
-                <h3 class="text-xl font-semibold text-gray-800">Имя Фамилия</h3>
-                <p class="text-sm text-gray-600">Должность</p>
+                <h3 class="text-xl font-semibold text-gray-800">?? Егор</h3>
+                <p class="text-sm text-gray-600">Капитан</p>
             </div>
             <div class="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition">
                 <img class="w-24 h-24 mx-auto rounded-full mb-4" src="https://via.placeholder.com/150" alt="Team Member">
-                <h3 class="text-xl font-semibold text-gray-800">Имя Фамилия</h3>
-                <p class="text-sm text-gray-600">Должность</p>
+                <h3 class="text-xl font-semibold text-gray-800">?? Ирина</h3>
+                <p class="text-sm text-gray-600">Дизайнер</p>
             </div>
         </div>
     </div>
 </section>
+
+<!-- Footer -->
+<footer class="bg-white border-t mt-16 ">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-20 py-10 flex flex-col md:flex-row justify-between items-center text-center md:text-left text-gray-700 text-sm">
+        <!-- Левая часть -->
+        <div class="mb-4 md:mb-0">
+            <p>&copy; 2025 CardiaXSystems. Все права защищены.</p>
+        </div>
+
+        <!-- Центральная часть -->
+        <div class="mb-4 md:mb-0">
+            <p>Связаться с нами:
+                <a href="mailto:contact@cardiaxsystems.ru" class="text-red-600 hover:underline">
+                    contact@cardiaxsystems.ru
+                </a>
+            </p>
+        </div>
+
+        <!-- Правая часть -->
+        <div class="flex space-x-4">
+            <a href="#about" class="hover:text-red-600 transition">О проекте</a>
+            <a href="#team" class="hover:text-red-600 transition">Команда</a>
+            <a href="#contact" class="hover:text-red-600 transition">Контакты</a>
+        </div>
+    </div>
+</footer>
+
+
+
+<script src = "./index.js"></script>
 </body>
 </html>
